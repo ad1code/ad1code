@@ -1,53 +1,89 @@
+<div align="center">
+
+<!-- Banner: lo genera scripts/banner.py -->
+<a href="https://adicodev.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
+    <img src="assets/banner-dark.svg" width="960" alt="Alberto Ramos, AI Engineer y fullstack. Retrato tramado y archivo perfil.yml con su rol, stack y proyectos">
+  </picture>
+</a>
+
+</div>
+
+---
+
+## `$ whoami`
+
 <p align="center">
-  <img src="img/header.jpg" width="100%" alt="Figma, CSS, Astro, JavaScript, HTML, React y WordPress">
+  <img src="assets/whoami.svg" width="960" alt="Alberto Ramos, AI Engineer y fullstack en Madrid. Proyectos: Second Brain, GymTracker y Validación facial">
 </p>
 
-<h1 align="center">Hola, soy Alberto 👋</h1>
+<br>
+
+<div align="center">
+
+## `$ cat stack.yaml`
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><code>ad1code:~$ cat stack.yaml</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="50%" valign="top"><code>├─ agentes:</code><br><br>
+        <img src="assets/tech/claude.webp" height="52" alt="Claude Code">
+        <img src="assets/tech/mcp.webp" height="52" alt="MCP">
+        <img src="assets/tech/n8n.webp" height="52" alt="n8n"><br>
+        <sub><code>Claude Code · MCP · n8n</code></sub>
+      </td>
+      <td width="50%" valign="top"><code>├─ vision:</code><br><br>
+        <img src="assets/tech/python.webp" height="52" alt="Python">
+        <img src="assets/tech/pytorch.webp" height="52" alt="PyTorch">
+        <img src="assets/tech/opencv.webp" height="52" alt="OpenCV">
+        <img src="assets/tech/fastapi.webp" height="52" alt="FastAPI"><br>
+        <sub><code>Python · PyTorch · OpenCV · FastAPI</code></sub>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><code>├─ producto:</code><br><br>
+        <img src="assets/tech/nextjs.webp" height="52" alt="Next.js">
+        <img src="assets/tech/react.webp" height="52" alt="React">
+        <img src="assets/tech/typescript.webp" height="52" alt="TypeScript">
+        <img src="assets/tech/postgresql.webp" height="52" alt="PostgreSQL"><br>
+        <sub><code>Next.js · React · TypeScript · PostgreSQL</code></sub>
+      </td>
+      <td valign="top"><code>╰─ infra:</code><br><br>
+        <img src="assets/tech/docker.webp" height="52" alt="Docker">
+        <img src="assets/tech/linux.webp" height="52" alt="Linux"><br>
+        <sub><code>Docker · Linux</code></sub>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2"><code>los repos de estos proyectos son privados  ·  el detalle, en adicodev.com</code></td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>
+
+---
+
+## `$ du --por-lenguaje`
 
 <p align="center">
-  <strong>Desarrollador web especializado en WordPress</strong> y en digitalizar el trabajo que aún se hace a mano.<br>
-  Monto webs, conecto herramientas y automatizo procesos donde ahorran horas de verdad. · Madrid
-</p>
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/front-end-dev-ai-specialist/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-  </a>
-  <a href="https://adicodev.com" target="_blank">
-    <img src="https://img.shields.io/badge/adicodev.com-0b0b0f?style=for-the-badge&logo=vercel&logoColor=white" alt="Web personal">
-  </a>
-  <a href="mailto:info@adicodev.com">
-    <img src="https://img.shields.io/badge/Email-ea4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
-  </a>
+  <img src="assets/lenguajes.svg" width="960" alt="Porcentaje de código por lenguaje en los repos propios: TypeScript 69 %, Python 13 %, CSS 8 %, Astro 3 %, JavaScript 2 % y Shell 2 %">
 </p>
 
 ---
 
-## Stack
+## `$ git log --graph`
 
-<p align="center">
-  <img src="https://img.shields.io/badge/WordPress-21759b?style=flat-square&logo=wordpress&logoColor=white" alt="WordPress">
-  <img src="https://img.shields.io/badge/WooCommerce-96588a?style=flat-square&logo=woocommerce&logoColor=white" alt="WooCommerce">
-  <img src="https://img.shields.io/badge/PHP-777bb4?style=flat-square&logo=php&logoColor=white" alt="PHP">
-  <img src="https://img.shields.io/badge/n8n-ea4b71?style=flat-square&logo=n8n&logoColor=white" alt="n8n">
-  <br>
-  <img src="https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb" alt="React">
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js">
-  <img src="https://img.shields.io/badge/Astro-bc52ee?style=flat-square&logo=astro&logoColor=white" alt="Astro">
-  <img src="https://img.shields.io/badge/Tailwind-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
-  <br>
-  <img src="https://img.shields.io/badge/Node.js-5fa04e?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/Supabase-3fcf8e?style=flat-square&logo=supabase&logoColor=white" alt="Supabase">
-  <img src="https://img.shields.io/badge/Docker-2496ed?style=flat-square&logo=docker&logoColor=white" alt="Docker">
-  <img src="https://img.shields.io/badge/Figma-f24e1e?style=flat-square&logo=figma&logoColor=white" alt="Figma">
-</p>
-
----
-
-## GitHub
-
-<!-- 🐍 La genera .github/workflows/snake.yml cada 12 h en la rama `output` -->
+<!-- La genera .github/workflows/snake.yml cada 12 h en la rama `output` -->
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ad1code/ad1code/output/github-snake-dark.svg">
@@ -55,3 +91,21 @@
     <img src="https://raw.githubusercontent.com/ad1code/ad1code/output/github-snake.svg" alt="Serpiente de contribuciones">
   </picture>
 </p>
+
+---
+
+## `$ contacto`
+
+<div align="center">
+
+<a href="https://www.linkedin.com/in/developer-ai-specialist/">
+  <img src="https://img.shields.io/badge/LinkedIn-d97757?style=for-the-badge&logo=linkedin&logoColor=141414" alt="LinkedIn">
+</a>&nbsp;&nbsp;
+<a href="https://adicodev.com">
+  <img src="https://img.shields.io/badge/adicodev.com-cdf34e?style=for-the-badge&logo=googlechrome&logoColor=141414" alt="Web personal">
+</a>&nbsp;&nbsp;
+<a href="mailto:info@adicodev.com">
+  <img src="https://img.shields.io/badge/Email-b39dff?style=for-the-badge&logo=maildotru&logoColor=141414" alt="Email">
+</a>
+
+</div>

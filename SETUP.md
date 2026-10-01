@@ -6,62 +6,70 @@ Si el repo pasa a privado o cambia de nombre, el perfil deja de mostrarlo.
 
 ---
 
-## 1. Pendiente antes de publicar
+## 1. Cómo está montado el perfil
 
-- [x] **URL de LinkedIn** — puesta.
-- [ ] Decidir si dejas el **email** en abierto. Los bots rastrean perfiles
-      públicos; si prefieres que no, borra el badge "Escríbeme".
-- [ ] **Sección de proyectos**: fuera por ahora. Solo se pueden enlazar repos
-      públicos — un enlace a un repo privado da 404 a cualquiera que no seas tú.
+El README casi no tiene Markdown: son piezas SVG que generan dos scripts de `scripts/`.
+El planteamiento sigue el de [`macu-dev/macu-dev`](https://github.com/macu-dev/macu-dev)
+(ventana de editor, retrato tramado, tarjeta `whoami`, tabla de stack). El código es propio:
+su repo no tiene licencia, así que no se copia nada de él.
+
+| Pieza | Archivo | La genera |
+|---|---|---|
+| Banner animado, claro y oscuro | `assets/banner-{dark,light}.svg` | `python3 scripts/banner.py` |
+| Tarjeta `whoami` con la red neuronal | `assets/whoami.svg` | `python3 scripts/cards.py` |
+| Lenguajes | `assets/lenguajes.svg` | `python3 scripts/cards.py` |
+| Logos del stack | `assets/tech/*.webp` | Copia de las pegatinas del portfolio (`public/tech/sticker/`) |
+
+Para cambiar un texto, un color o un logo se edita el script y se vuelve a ejecutar.
+Los SVG no se tocan a mano.
+
+`banner.py` necesita Pillow y numpy. `cards.py`, solo Python.
 
 ---
 
 ## 2. El banner
 
-Está en `img/header.jpg` (800 × 200 px, 32 KB).
+**Qué hace.** Trama el retrato a 1 bit (Floyd-Steinberg) y lo dibuja con puntos. 700 partículas
+salen de él y forman los logos de `LOGOS` (Claude, Python, React y Docker), cada uno en el color
+de un proyecto; después vuelven al retrato. Sobre la cara, el recuadro de detección del hero.
 
-Para cambiarlo, sustituye el archivo y ya. Dos avisos:
+**De dónde sale el retrato.** De `adicode-porfolio/public/alberto-sin-fondo.webp`. El original
+no se guarda en este repo, que es público. Con otra foto:
+`python3 scripts/banner.py ruta/al/retrato.png`. Si cambia el encuadre, hay que ajustar `CROP`
+(el recorte) y `FACE` (dónde cae el recuadro).
 
-**Resolución.** El README se renderiza a unos 830 px de ancho, así que la imagen
-se estira ligeramente por encima de su tamaño nativo. Se ve bien, pero en
-pantallas retina se nota algo blanda. Si tienes el original (Figma, Canva),
-expórtalo a **1600 × 400 px** y gana nitidez sin tocar nada más.
-
-**Tema oscuro.** El banner tiene fondo gris claro, así que a quien tenga GitHub
-en modo oscuro le aparece como una tarjeta clara. No queda mal y es lo que hace
-media plataforma. Si quieres una versión oscura, exporta el mismo diseño con
-fondo oscuro como `img/header-dark.jpg` y cambia en el README el `<img>` por:
-
-```html
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="img/header-dark.jpg">
-  <img src="img/header.jpg" width="100%" alt="...">
-</picture>
-```
-
-No merece la pena generar la versión oscura por software: los logos negros
-(WordPress, Astro) desaparecen sobre fondo oscuro y hay que recolocarlos a mano.
-
-### Reglas del formato
-
-| Parámetro | Valor | Por qué |
-|---|---|---|
-| Ratio | 4:1 | Más alto empuja tu contenido fuera de la primera pantalla. |
-| Tamaño ideal | 1600 × 400 px | El doble del ancho de render = nítido en retina. |
-| Peso | < 500 KB | GitHub lo sirve por su proxy; los pesados tardan en aparecer. |
-| Texto | ≥ 48 px sobre lienzo de 1600 | En móvil el banner baja a ~350 px de ancho. |
+**Qué se edita:** `YAML_ROWS` (el texto de `perfil.yml`), `LOGOS` y `THEMES`.
 
 ### Trampas
 
-1. **Caché de Camo.** GitHub proxea y cachea las imágenes. Si corriges el banner
-   con el mismo nombre puede seguir viéndose el viejo un rato. Solución:
-   renómbralo (`header-v2.jpg`) y actualiza el `src`.
-2. **Nada de CSS.** GitHub elimina `<style>`, `class` y scripts del Markdown.
-   Solo sobreviven `align`, `width`, `height` y `srcset`. Todo el diseño va
-   dentro de la imagen.
-3. **Rutas relativas.** Usa `img/header.jpg`, no URLs de `github.com/.../blob/...`.
-   Las de `blob` funcionan hoy porque GitHub las reescribe, pero se rompen si
-   cambias el nombre de la rama.
+1. **Sin JavaScript ni recursos externos.** GitHub pinta los SVG como imagen: no carga fuentes
+   ni imágenes de fuera y no ejecuta scripts. La animación es SMIL (`<animate>`), y el texto usa
+   la fuente monoespaciada del sistema.
+2. **El primer fotograma tiene que valer solo.** La app móvil de GitHub puede no animar.
+   Por eso el retrato ya está dibujado en el segundo 0.
+3. **Peso.** Cada partícula lleva su recorrido escrito: el banner pesa entre 0,7 y 1 MB. Subir
+   `TRAVELLERS` o añadir logos lo engorda rápido.
+4. **Caché de Camo.** GitHub cachea las imágenes. Si regeneras el banner y sigue saliendo el
+   viejo, renombra el archivo (`banner-dark.v2.svg`) y actualiza el README.
+5. **Nada de CSS en el Markdown.** GitHub elimina `<style>`, `class` y scripts. Solo sobreviven
+   `align`, `width`, `height` y `srcset`.
+
+### Actualizar los lenguajes
+
+`assets/lenguajes.json` son los bytes por lenguaje de los repos propios, privados incluidos y
+sin forks. Se actualiza con:
+
+```bash
+gh api graphql -f query='{viewer{repositories(first:100,ownerAffiliations:OWNER,isFork:false){nodes{languages(first:10,orderBy:{field:SIZE,direction:DESC}){edges{size node{name}}}}}}}' \
+  --jq '[.data.viewer.repositories.nodes[].languages.edges[]|{n:.node.name,s:.size}]|group_by(.n)|map({key:.[0].n,value:(map(.s)|add)})|from_entries' \
+  > assets/lenguajes.json && python3 scripts/cards.py
+```
+
+### Pendiente
+
+- Los proyectos no enlazan a ningún repo porque son privados: un enlace daría 404.
+- El banner enlaza a adicodev.com, que sigue siendo el WordPress hasta que se despliegue el
+  portfolio nuevo.
 
 ---
 
