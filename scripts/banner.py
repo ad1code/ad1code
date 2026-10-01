@@ -57,7 +57,7 @@ YAML_ROWS = [
     (1, "rol", "AI Engineer · Fullstack"),
     (1, "base", "Madrid"),
     (1, "foco", "producto con IA, puesto en producción"),
-    (1, "origen", "Bellas Artes · animación 3D · desarrollo web"),
+    (1, "origen", "desarrollo web convencional"),
     (0, "stack", ""),
     (1, "agentes", "Claude Code · MCP · n8n"),
     (1, "vision", "Python · PyTorch · OpenCV · FastAPI"),

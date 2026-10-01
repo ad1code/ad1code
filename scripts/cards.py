@@ -104,7 +104,7 @@ def whoami() -> str:
         text(220, 140, "AI Engineer · Fullstack", TEXT, 17, 700),
         f'<path d="M48 160H604" stroke="{LINE}"/>',
         text(48, 187, "base:", MUTED, 15), text(126, 187, "Madrid", TEXT2, 15),
-        text(48, 211, "antes:", MUTED, 15), text(126, 211, "Bellas Artes · animación 3D · desarrollo web", TEXT2, 15),
+        text(48, 211, "antes:", MUTED, 15), text(126, 211, "desarrollo web convencional", TEXT2, 15),
         text(48, 235, "ahora:", MUTED, 15), text(126, 235, "IA en productos", TEXT2, 15),
         text(48, 273, "❯ ls proyectos/", ACCENT, 19, 700),
     ]
